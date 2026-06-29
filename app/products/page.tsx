@@ -1,4 +1,5 @@
 export const dynamic = "force-dynamic";
+
 import Image from "next/image";
 import Link from "next/link";
 import { getProducts } from "@/db/product";
@@ -9,8 +10,17 @@ export default async function ProductsPage() {
   return (
     <div className="min-h-screen bg-gray-50 px-6 py-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Products</h1>
+        <div className="mb-8 flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-gray-900">
+            Products
+          </h1>
+
+          <Link
+            href="/products/create"
+            className="rounded-md bg-gray-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-700"
+          >
+            Create Product
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -25,6 +35,7 @@ export default async function ProductsPage() {
                     src={product.images[0].url}
                     alt={product.name}
                     fill
+                    sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover transition duration-300 group-hover:scale-105"
                   />
                 ) : (
